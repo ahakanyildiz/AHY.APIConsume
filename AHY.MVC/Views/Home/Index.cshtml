@@ -1,0 +1,53 @@
+﻿@model List<AHY.MVC.ResponseModels.ProductResponseModel>
+@{ 
+    Layout = "_Layout";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Web Api Consume</title>
+</head>
+<body>
+    <p>MVC Works</p>
+    <p>Durum : @ViewBag.ResponseMessage</p>
+
+
+    <a class="btn btn-primary text-end" asp-action="Create" asp-controller="Home">Yeni Ürün Ekle</a> 
+    <table class="table table-bordered table-hover table-striped"> 
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Date</th>
+                <th>Category Id</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product.Id</td>
+                        <td>@product.Name</td>
+                        <td>@product.Price</td>
+                        <td>@product.Stock</td>
+                        <td>@product.CreatedDate?.ToShortDateString()</td>
+                        <td>@product.CategoryId</td>
+                        <td><a class="btn btn-danger" asp-action="Delete" asp-controller="Home" asp-route-id="@product.Id">Sil</a></td>
+                        <td><a class="btn btn-info" asp-action="Update" asp-controller="Home" asp-route-id="@product.Id">Güncelle</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
+
+
+@* HTTP CLIENT VE HTTP CLIENT FACTOR VERSACE *@

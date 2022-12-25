@@ -1,0 +1,45 @@
+﻿@model AHY.MVC.ResponseModels.ProductResponseModel
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    if (TempData["errorMessage"] != null)
+    {
+        <p style="color:red">
+            @TempData["errorMessage"]?.ToString();
+        </p>
+    }
+}
+
+
+<form asp-action="Update" asp-controller="Home" method="post">
+    <input type="hidden" asp-for="@Model.Id" />
+    <input type="hidden" asp-for="@Model.CreatedDate" />
+    <input type="hidden" asp-for="@Model.CategoryId" />
+    <input type="hidden" asp-for="@Model.ImagePath" />
+    <div class="mb-3">
+        <label class="form-label">Ürün Adı: </label>
+        <input class="form-control" asp-for="@Model.Name" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ürün Stok: </label>
+        <input class="form-control" type="number" asp-for="@Model.Stock" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ürün Fiyatı: </label>
+        <input class="form-control" type="number" asp-for="@Model.Price" />
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Güncelle</button>
+    </div>
+</form>
+
+<div class="mb-2">
+    <a class="btn btn-info" asp-action="Index" asp-controller="Home">Listeye Geri Dön</a>
+</div>
+
